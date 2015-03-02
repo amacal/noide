@@ -1,0 +1,11 @@
+{
+	"metadata": {
+		"type": "exe"
+	},
+    "references": [
+        "System"
+    ],
+    "dependencies": [
+        "noide.engine"
+    ]
+}

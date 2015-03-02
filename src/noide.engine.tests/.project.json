@@ -1,0 +1,12 @@
+{
+    "references": [
+        "System",
+        "System.Core"
+    ],
+    "dependencies": [
+        "noide.engine"
+    ],
+    "packages": [
+        { "name": "NUnit", "version": "2.6.4" }
+    ]
+}

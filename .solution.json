@@ -1,0 +1,23 @@
+{
+    "folders": {
+        "output": "out",
+        "sources": "src",
+        "packages": "lib"
+    },
+    "packages": [
+        { 
+            "name": "NUnit", 
+            "version": "2.6.4",
+            "references": [ "lib\\NUnit.Framework.dll" ]
+        },
+        {
+            "name": "NUnit.Runners", 
+            "version": "2.6.4",
+        },
+        {
+            "name": "NetJSON", 
+            "version": "1.0.6.2",
+            "references": [ "lib\\net40\\NetJSON.dll" ]
+        }
+    ]
+}

@@ -1,0 +1,9 @@
+{
+    "references": [
+        "System",
+        "System.Core"
+    ],
+    "packages": [
+        { "name": "NetJSON", "version": "1.0.6.2" }
+    ]
+}
