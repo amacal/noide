@@ -3,11 +3,6 @@ using System.Collections.Generic;
 
 namespace noide
 {
-	public interface ICompiler
-	{
-		IResource Compile(ICompilable target);
-	}
-
 	public interface ICompilable
 	{
 		String Name { get; }
