@@ -7,17 +7,14 @@ namespace noide
         public static void Main(String[] args)
         {
             Bootstrapper bootstrapper = new Bootstrapper();
-            ISolutionWatcher watcher = bootstrapper.CreateSolutionWatcher();
 
-            watcher.Watch(new Never(), args[0]);
-        }
+            IArgumentParser parser = bootstrapper.CreateArgumentParser();
+            ICommandFactory factory = bootstrapper.CreateCommandFactory();
 
-        private class Never : IStop
-        {
-        	public bool IsRequested()
-        	{
-        		return false;
-        	}
+            IArgument[] arguments = parser.Parse(args);
+            ICommand command = factory.Create(arguments);
+
+            command.Execute();
         }
     }
 }

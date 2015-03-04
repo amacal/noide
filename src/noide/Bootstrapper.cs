@@ -32,6 +32,11 @@ namespace noide
 			return new ConsoleReporterFactory();
 		}
 
+		public IArgumentParser CreateArgumentParser()
+		{
+			return new ArgumentParser();
+		}
+
 		private IProjectReader CreateProjectReader()
 		{
 			return 
@@ -133,7 +138,7 @@ namespace noide
 					this.CreateReporterFactory());
 		}
 
-		public ISolutionWatcher CreateSolutionWatcher()
+		private ISolutionWatcher CreateSolutionWatcher()
 		{
 			return
 				new SolutionWatcher(
@@ -142,6 +147,13 @@ namespace noide
 					this.CreateSolutionCompiler(),
 					this.CreateReporterFactory(),
 					this.CreateProjectReader());
+		}
+
+		public ICommandFactory CreateCommandFactory()
+		{
+			return
+				new CommandFactory(
+					this.CreateSolutionWatcher());
 		}
 	}
 }
