@@ -122,7 +122,7 @@ namespace noide
 		private IPackageManagerFactory CreatePackageManagerFactory()
 		{
 			return
-				new PackageManagerFactory(
+				new NugetManagerFactory(
 					this.CreateProcessFactory(),
 					this.CreateFileService());
 		}

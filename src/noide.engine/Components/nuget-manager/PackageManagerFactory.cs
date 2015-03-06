@@ -1,11 +1,11 @@
 namespace noide
 {
-	public class PackageManagerFactory : IPackageManagerFactory
+	public partial class NugetManagerFactory : IPackageManagerFactory
 	{
 		private readonly IProcessFactory processFactory;
 		private readonly IFileService fileService;
 
-		public PackageManagerFactory(IProcessFactory processFactory, IFileService fileService)
+		public NugetManagerFactory(IProcessFactory processFactory, IFileService fileService)
 		{
 			this.processFactory = processFactory;
 			this.fileService = fileService;
@@ -13,7 +13,7 @@ namespace noide
 
 		public IPackageManager Create()
 		{
-			return new PackageManager(this.processFactory, this.fileService);
+			return new NugetManager(this.processFactory, this.fileService);
 		}
 	}
 }
