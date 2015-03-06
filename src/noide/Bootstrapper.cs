@@ -149,11 +149,20 @@ namespace noide
 					this.CreateProjectReader());
 		}
 
+		private ISolutionMerger CreateSolutionMerger()
+		{
+			return
+				new SolutionMerger(
+					this.CreateSolutionFactory(),
+					this.CreateSourceEnumerator());
+		}
+
 		public ICommandFactory CreateCommandFactory()
 		{
 			return
 				new CommandFactory(
-					this.CreateSolutionWatcher());
+					this.CreateSolutionWatcher(),
+					this.CreateSolutionMerger());
 		}
 	}
 }

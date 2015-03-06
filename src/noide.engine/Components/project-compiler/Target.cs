@@ -4,7 +4,7 @@ using System.IO;
 
 namespace noide
 {
-	partial class ProjectCompiler
+	partial class ProjectCompilerFactory
 	{
 		private class Target : ICompilable
 		{

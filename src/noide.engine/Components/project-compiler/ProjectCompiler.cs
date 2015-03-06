@@ -2,27 +2,30 @@ using System;
 
 namespace noide
 {
-	public partial class ProjectCompiler : IProjectCompiler
+	partial class ProjectCompilerFactory
 	{
-		private readonly IReferenceEnumerator referenceEnumerator;
-		private readonly ISourceEnumerator sourceEnumerator;
-		private readonly ICompiler compiler;
-		private readonly String output;
-
-		public ProjectCompiler(ISourceEnumerator sourceEnumerator, IReferenceEnumerator referenceEnumerator, ICompiler compiler, String output)
+		private class ProjectCompiler : IProjectCompiler
 		{
-			this.referenceEnumerator = referenceEnumerator;
-			this.sourceEnumerator = sourceEnumerator;
-			this.compiler = compiler;
-			this.output = output;
-		}
+			private readonly IReferenceEnumerator referenceEnumerator;
+			private readonly ISourceEnumerator sourceEnumerator;
+			private readonly ICompiler compiler;
+			private readonly String output;
 
-		public IResource Compile(IProject project)
-		{
-			Target target = new Target(this.output, project, this.referenceEnumerator, this.sourceEnumerator);
-			IResource resource = this.compiler.Compile(target);
+			public ProjectCompiler(ISourceEnumerator sourceEnumerator, IReferenceEnumerator referenceEnumerator, ICompiler compiler, String output)
+			{
+				this.referenceEnumerator = referenceEnumerator;
+				this.sourceEnumerator = sourceEnumerator;
+				this.compiler = compiler;
+				this.output = output;
+			}
 
-			return resource;
+			public IResource Compile(IProject project)
+			{
+				Target target = new Target(this.output, project, this.referenceEnumerator, this.sourceEnumerator);
+				IResource resource = this.compiler.Compile(target);
+
+				return resource;
+			}
 		}
 	}
 }

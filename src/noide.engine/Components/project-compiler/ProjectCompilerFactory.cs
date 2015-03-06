@@ -2,7 +2,7 @@ using System;
 
 namespace noide
 {
-	public class ProjectCompilerFactory : IProjectCompilerFactory
+	public partial class ProjectCompilerFactory : IProjectCompilerFactory
 	{
 		private readonly ISourceEnumerator sourceEnumerator;
 		private readonly ICompiler compiler;
