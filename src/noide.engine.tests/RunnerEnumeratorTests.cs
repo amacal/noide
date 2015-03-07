@@ -100,22 +100,7 @@ namespace noide.tests
 
 			public override IPackageReferenceCollection PackageReferences
 			{
-				get { return new PackageReferenceCollection { Package = this.package }; }
-			}
-
-			private class PackageReferenceCollection : IPackageReferenceCollection
-			{
-				public PackageReference Package;
-
-				public IEnumerable<PackageReference> AsEnumerable()
-				{
-					yield return this.Package;
-				}
-
-				public bool Contains(PackageReference reference)
-				{
-					return this.Package.Equals(reference);
-				}
+				get { return new PackageReferenceCollectionStub(this.package); }
 			}
 		}
 

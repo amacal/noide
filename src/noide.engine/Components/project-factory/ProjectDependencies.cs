@@ -21,12 +21,12 @@ namespace noide
             
             public IReferenceCollection References
             {
-                get { return new ReferenceCollection(this.references.AsReadOnly()); }
+                get { return new ReferenceCollection(this.references); }
             }
             
             public IProjectReferenceCollection Projects
             {
-                get { return new ProjectReferenceCollection(this.projects.AsReadOnly()); }
+                get { return new ProjectReferenceCollection(this.projects); }
             }
             
             public IPackageReferenceCollection Packages
@@ -47,66 +47,6 @@ namespace noide
             public void AddPackages(IReadOnlyCollection<PackageReference> packages)
             {
                 this.packages.AddRange(packages);
-            }
-
-            private class ReferenceCollection : IReferenceCollection
-            {   
-                private readonly ReadOnlyCollection<Reference> references;
-
-                public ReferenceCollection(ReadOnlyCollection<Reference> references)
-                {
-                    this.references = references;
-                }
-
-                public IEnumerable<Reference> AsEnumerable()
-                {
-                    return this.references;
-                }
-
-                public bool Contains(Reference reference)
-                {
-                    return this.references.Contains(reference);
-                }
-            }
-
-            private class ProjectReferenceCollection : IProjectReferenceCollection
-            {
-                private readonly ReadOnlyCollection<ProjectReference> references;
-
-                public ProjectReferenceCollection(ReadOnlyCollection<ProjectReference> references)
-                {
-                    this.references = references;
-                }
-
-                public IEnumerable<ProjectReference> AsEnumerable()
-                {
-                    return this.references;
-                }
-
-                public bool Contains(ProjectReference reference)
-                {
-                    return this.references.Contains(reference);
-                }
-            }
-
-            private class PackageReferenceCollection : IPackageReferenceCollection
-            {
-                private readonly ReadOnlyCollection<PackageReference> references;
-
-                public PackageReferenceCollection(ReadOnlyCollection<PackageReference> references)
-                {
-                    this.references = references;
-                }
-
-                public IEnumerable<PackageReference> AsEnumerable()
-                {
-                    return this.references;
-                }
-
-                public bool Contains(PackageReference reference)
-                {
-                    return this.references.Contains(reference);
-                }
             }
         }
     }

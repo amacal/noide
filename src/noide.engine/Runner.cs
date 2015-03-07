@@ -74,10 +74,23 @@ namespace noide
                 this.package = package;
             }
 
+            public int Count
+            {
+                get { return 1; }
+            }
+
             public bool Contains(PackageReference reference)
             {
                 return this.package.Metadata.Name == reference.Name
                     && this.package.Metadata.Version == reference.Version;
+            }
+
+            public void Clear()
+            {
+            }
+
+            public void Add(PackageReference reference)
+            {
             }
 
             public IEnumerable<PackageReference> AsEnumerable()

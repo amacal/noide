@@ -44,52 +44,12 @@ namespace noide.tests
 
 			public override IProjectReferenceCollection ProjectReferences
 			{
-				get { return new ProjectReferenceCollection(this.projects); }
+				get { return new ProjectReferenceCollectionStub(this.projects); }
 			}
 
 			public override IPackageReferenceCollection PackageReferences
 			{
-				get { return new PackageReferenceCollection(this.packages); }
-			}
-
-			private class ProjectReferenceCollection : IProjectReferenceCollection
-			{
-				private readonly ProjectReference[] references;
-
-				public ProjectReferenceCollection(ProjectReference[] references)
-				{
-					this.references = references;
-				}
-
-				public IEnumerable<ProjectReference> AsEnumerable()
-				{
-					return this.references;
-				}
-
-				public bool Contains(ProjectReference reference)
-				{
-					return this.references.Contains(reference);
-				}
-			}
-
-			private class PackageReferenceCollection : IPackageReferenceCollection
-			{
-				private readonly PackageReference[] references;
-
-				public PackageReferenceCollection(PackageReference[] references)
-				{
-					this.references = references;
-				}
-
-				public IEnumerable<PackageReference> AsEnumerable()
-				{
-					return this.references;
-				}
-
-				public bool Contains(PackageReference reference)
-				{
-					return this.references.Contains(reference);
-				}
+				get { return new PackageReferenceCollectionStub(this.packages); }
 			}
 		}
 	}

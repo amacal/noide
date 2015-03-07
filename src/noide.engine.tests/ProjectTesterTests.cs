@@ -102,56 +102,17 @@ namespace noide.tests
 
 			public override IReferenceCollection References
 			{
-				get { return new ReferenceCollection(); }
+				get { return new ReferenceCollectionStub("System"); }
 			}
 
 			public override IProjectReferenceCollection ProjectReferences
 			{
-				get { return new ProjectReferenceCollection(); }
+				get { return new ProjectReferenceCollectionStub("MyProject"); }
 			}
 
 			public override IPackageReferenceCollection PackageReferences
 			{
-				get { return new PackageReferenceCollection(); }
-			}
-
-			private class ReferenceCollection : IReferenceCollection
-			{
-				public IEnumerable<Reference> AsEnumerable()
-				{
-					return new[] { new Reference("System") };
-				}
-
-				public bool Contains(Reference reference)
-				{
-					return reference.Name == "System";
-				}
-			}
-
-			private class ProjectReferenceCollection : IProjectReferenceCollection
-			{
-				public IEnumerable<ProjectReference> AsEnumerable()
-				{
-					return new[] { new ProjectReference("MyProject") };
-				}
-
-				public bool Contains(ProjectReference reference)
-				{
-					return reference.Name == "MyProject";
-				}
-			}
-
-			private class PackageReferenceCollection : IPackageReferenceCollection
-			{
-				public IEnumerable<PackageReference> AsEnumerable()
-				{
-					yield return new PackageReference("NUnit", "2.6.3");
-				}
-
-				public bool Contains(PackageReference reference)
-				{
-					return reference.Name == "NUnit" && reference.Version == "2.6.3";
-				}
+				get { return new PackageReferenceCollectionStub("NUnit", "2.6.3"); }
 			}
 		}
 

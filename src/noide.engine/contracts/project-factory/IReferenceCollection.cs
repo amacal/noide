@@ -4,8 +4,14 @@ namespace noide
 {
 	public interface IReferenceCollection
 	{
-		IEnumerable<Reference> AsEnumerable();
+		int Count { get; }
 
 		bool Contains(Reference reference);
+
+		void Clear();
+
+		void Add(Reference reference);
+
+		IEnumerable<Reference> AsEnumerable();
 	}
 }

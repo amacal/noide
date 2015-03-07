@@ -4,8 +4,14 @@ namespace noide
 {
 	public interface IPackageReferenceCollection
 	{
-		IEnumerable<PackageReference> AsEnumerable();
+		int Count { get; }
 
 		bool Contains(PackageReference reference);
+
+		void Clear();
+
+		void Add(PackageReference reference);
+
+		IEnumerable<PackageReference> AsEnumerable();
 	}
 }

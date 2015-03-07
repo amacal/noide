@@ -13,60 +13,21 @@ namespace noide.tests
 
 		public virtual IReferenceCollection References
 		{
-			get { return new ReferenceCollection(); }
+			get { return new ReferenceCollectionFake(); }
 		}
 
 		public virtual IProjectReferenceCollection ProjectReferences
 		{
-			get { return new ProjectReferenceCollection(); }
+			get { return new ProjectReferenceCollectionFake(); }
 		}
 
 		public virtual IPackageReferenceCollection PackageReferences
 		{
-			get { return new PackageReferenceCollection(); }
+			get { return new PackageReferenceCollectionFake(); }
 		}
 
 		public void Update(IProjectReader reader)
 		{
-		}
-
-		private class ReferenceCollection : IReferenceCollection
-		{
-			public IEnumerable<Reference> AsEnumerable()
-			{
-				return Enumerable.Empty<Reference>();
-			}
-
-			public bool Contains(Reference reference)
-			{
-				return false;
-			}
-		}
-
-		private class ProjectReferenceCollection : IProjectReferenceCollection
-		{
-			public IEnumerable<ProjectReference> AsEnumerable()
-			{
-				return Enumerable.Empty<ProjectReference>();
-			}
-
-			public bool Contains(ProjectReference reference)
-			{
-				return false;
-			}
-		}
-
-		private class PackageReferenceCollection : IPackageReferenceCollection
-		{
-			public IEnumerable<PackageReference> AsEnumerable()
-			{
-				return Enumerable.Empty<PackageReference>();
-			}
-
-			public bool Contains(PackageReference reference)
-			{
-				return false;
-			}
 		}
 	}
 }

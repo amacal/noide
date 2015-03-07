@@ -4,8 +4,14 @@ namespace noide
 {
 	public interface IProjectReferenceCollection
 	{
-		IEnumerable<ProjectReference> AsEnumerable();
+		int Count { get; }
 
 		bool Contains(ProjectReference reference);
+
+		void Clear();
+
+		void Add(ProjectReference reference);
+
+		IEnumerable<ProjectReference> AsEnumerable();
 	}
 }

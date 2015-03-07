@@ -10,26 +10,12 @@ namespace noide.tests
 
 			public IPackageReferenceCollection PackageReferences
 			{
-				get { return new References(); }
+				get { return new PackageReferenceCollectionStub("NUnit.Runners", "2.6.3"); }
 			}
 
 			public IResource<ITestingResult> Test(ITestable target)
 			{
 				return new Resource();
-			}
-
-			private class References : IPackageReferenceCollection
-			{
-				public IEnumerable<PackageReference> AsEnumerable()
-				{
-					yield return new PackageReference("NUnit.Runners", "2.6.3");
-				}
-
-				public bool Contains(PackageReference reference)
-				{
-					return reference.Name == "NUnit.Runners"
-					    && reference.Version == "2.6.3";
-				}
 			}
 		}
 	}
