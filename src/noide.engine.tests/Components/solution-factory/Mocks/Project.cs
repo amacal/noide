@@ -6,7 +6,7 @@ namespace noide.tests
 {
 	partial class SolutionTests
 	{
-		private class Project : ProjectStub, IProject
+		private class Project : IProject
 		{
 			private readonly String path;
 			private readonly String name;
@@ -37,17 +37,22 @@ namespace noide.tests
 				this.projects = new ProjectReference[0];
 			}
 
-			public ProjectMetadata Metadata
+			public IProjectMetadata Metadata
 			{
-				get { return new ProjectMetadata(this.path, this.name); }
+				get { return new ProjectMetadataStub(this.path, this.name); }
 			}
 
-			public override IProjectReferenceCollection ProjectReferences
+			public IReferenceCollection References
+			{
+				get { return new ReferenceCollectionStub(); }
+			}
+
+			public IProjectReferenceCollection ProjectReferences
 			{
 				get { return new ProjectReferenceCollectionStub(this.projects); }
 			}
 
-			public override IPackageReferenceCollection PackageReferences
+			public IPackageReferenceCollection PackageReferences
 			{
 				get { return new PackageReferenceCollectionStub(this.packages); }
 			}

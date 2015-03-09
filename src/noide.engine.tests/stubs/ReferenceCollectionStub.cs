@@ -6,39 +6,41 @@ namespace noide.tests
 {
 	public class ReferenceCollectionStub : IReferenceCollection
 	{
-		private readonly List<String> references;
+		private readonly List<Reference> references;
 
 		public ReferenceCollectionStub(params String[] references)
 		{
-			this.references = references.ToList();
+			this.references = new List<Reference>();
+
+			foreach (String reference in references)
+			{
+				this.references.Add(new Reference(reference));
+			}
 		}
 
-		public virtual int Count
+		public int Count
 		{
 			get { return this.references.Count; }
 		}
 
-		public virtual bool Contains(Reference reference)
+		public bool Contains(Reference reference)
 		{
-			return this.references.Contains(reference.Name);
+			return this.references.Contains(reference);
 		}
 
-		public virtual void Clear()
+		public void Clear()
 		{
 			this.references.Clear();
 		}
 
-		public virtual void Add(Reference reference)
+		public void Add(Reference reference)
 		{
-			this.references.Add(reference.Name);
+			this.references.Add(reference);
 		}
 
-		public virtual IEnumerable<Reference> AsEnumerable()
+		public IEnumerable<Reference> AsEnumerable()
 		{
-			foreach (String reference in this.references)
-			{
-				yield return new Reference(reference);
-			}
+			return this.references;
 		}
 	}
 }

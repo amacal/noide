@@ -36,7 +36,7 @@ namespace noide
 
 			public String Type
 			{
-				get { return this.project.Type; }
+				get { return this.project.Metadata.Type; }
 			}
 
 			public IReadOnlyCollection<String> GetSources()

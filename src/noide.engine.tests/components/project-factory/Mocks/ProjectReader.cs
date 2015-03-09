@@ -8,13 +8,13 @@ namespace noide.tests
 		{
 			public String Path;
 
-			public void Update(ProjectConfigurer configurer)
+			public void Update(IProject project)
 			{
-				this.Path = configurer.Metadata.Path;
+				this.Path = project.Metadata.Path;
 
-				configurer.AddReference(new Reference("System"));
-				configurer.AddProject(new ProjectReference("MyProject"));
-				configurer.AddPackage(new PackageReference("NUnit", "2.6.3"));
+				project.References.Add(new Reference("System"));
+				project.ProjectReferences.Add(new ProjectReference("MyProject"));
+				project.PackageReferences.Add(new PackageReference("NUnit", "2.6.3"));
 			}
 		}
 	}

@@ -13,7 +13,7 @@ namespace noide.tests
 			ReporterFactory reporterFactory = new ReporterFactory();
 			WaiterFactory waiterFactory = new WaiterFactory { TimeOuts = 5 };
 
-			Project project = new Project();
+			ProjectFake project = new ProjectFake();
 			SolutionCompiler solutionCompiler = new SolutionCompiler(packageManagerFactory, compilerFactory, testerFactory, waiterFactory, reporterFactory);
 			SolutionData solutionData = new SolutionData { Projects = new[] { project } };
 

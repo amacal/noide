@@ -12,9 +12,9 @@ namespace noide
             this.jsonReader = jsonReader;
         }
 
-        public void Update(ProjectConfigurer configurer)
+        public void Update(IProject project)
         {
-            String path = Path.Combine(configurer.Metadata.Path, ".project.json");
+            String path = Path.Combine(project.Metadata.Path, ".project.json");
             ProjectData data = this.jsonReader.Read<ProjectData>(path);
 
             if (data != null)
@@ -23,31 +23,34 @@ namespace noide
                 {
                     if (data.metadata.type != null)
                     {
-                        configurer.SetType(data.metadata.type);
+                        project.Metadata.Type = data.metadata.type;
                     }
                 }
 
+                project.References.Clear();
                 if (data.references != null)
                 {
                     foreach (String reference in data.references)
                     {
-                        configurer.AddReference(new Reference(reference));
+                        project.References.Add(new Reference(reference));
                     }
                 }
             
+                project.ProjectReferences.Clear();
                 if (data.dependencies != null)
                 {
                     foreach (String dependency in data.dependencies)
                     {
-                        configurer.AddProject(new ProjectReference(dependency));
+                        project.ProjectReferences.Add(new ProjectReference(dependency));
                     }
                 }
             
+                project.PackageReferences.Clear();
                 if (data.packages != null)
                 {
                     foreach (PackageData package in data.packages)
                     {
-                        configurer.AddPackage(new PackageReference(package.name, package.version));
+                        project.PackageReferences.Add(new PackageReference(package.name, package.version));
                     }
                 }
             }

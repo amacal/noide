@@ -4,25 +4,25 @@ namespace noide.tests
 {
 	public class ProjectReferenceCollectionFake : IProjectReferenceCollection
 	{
-		public virtual int Count
+		public int Count
 		{
 			get { return 0; }
 		}
 
-		public virtual bool Contains(ProjectReference reference)
+		public bool Contains(ProjectReference reference)
 		{
 			return false;
 		}
 
-		public virtual void Clear()
+		public void Clear()
 		{
 		}
 
-		public virtual void Add(ProjectReference reference)
+		public void Add(ProjectReference reference)
 		{
 		}
 
-		public virtual IEnumerable<ProjectReference> AsEnumerable()
+		public IEnumerable<ProjectReference> AsEnumerable()
 		{
 			return new ProjectReference[0];
 		}

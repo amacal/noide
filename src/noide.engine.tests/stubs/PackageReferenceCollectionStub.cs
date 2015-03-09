@@ -19,27 +19,27 @@ namespace noide.tests
 			this.references = references.ToList();
 		}
 
-		public virtual int Count
+		public int Count
 		{
 			get { return this.references.Count; }
 		}
 
-		public virtual bool Contains(PackageReference reference)
+		public bool Contains(PackageReference reference)
 		{
 			return this.references.Contains(reference);
 		}
 
-		public virtual void Clear()
+		public void Clear()
 		{
 			this.references.Clear();
 		}
 
-		public virtual void Add(PackageReference reference)
+		public void Add(PackageReference reference)
 		{
 			this.references.Add(reference);
 		}
 
-		public virtual IEnumerable<PackageReference> AsEnumerable()
+		public IEnumerable<PackageReference> AsEnumerable()
 		{
 			return this.references;
 		}

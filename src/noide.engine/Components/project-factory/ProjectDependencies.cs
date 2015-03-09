@@ -31,7 +31,7 @@ namespace noide
             
             public IPackageReferenceCollection Packages
             {
-                get { return new PackageReferenceCollection(this.packages.AsReadOnly()); }
+                get { return new PackageReferenceCollection(this.packages); }
             }
 
             public void AddReferences(IReadOnlyCollection<Reference> references)

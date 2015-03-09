@@ -115,26 +115,11 @@ namespace noide.tests
 			}
 		}
 
-		private class Project : ProjectStub, IProject
-		{
-			private readonly String path;
-
-			public Project(String path)
-			{
-				this.path = path;
-			}
-
-			public ProjectMetadata Metadata
-			{
-				get { return new ProjectMetadata(this.path, "Project"); }
-			}
-		}
-
 		private class ProjectFactory : IProjectFactory
 		{
 			public IProject Create(String path)
 			{
-				return new Project(path);
+				return new ProjectStub(path, "project");
 			}
 		}
 

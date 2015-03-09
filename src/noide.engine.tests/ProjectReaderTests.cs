@@ -10,60 +10,53 @@ namespace noide.tests
 		[Test]
 		public void WhenUpdatingItUsesPassedPath()
 		{
-			ProjectConfigurer configurer = Factory.CreateConfigurer();
+			const string name = "abc";
+			const string path = "c:\\projects\\abc";
+
+			ProjectStub project = new ProjectStub(path, name);
 			JsonReader reader = new JsonReader();
 			ProjectReader updater = new ProjectReader(reader);
 
-			updater.Update(configurer);
+			updater.Update(project);
 
-			Assert.That(reader.Path, Is.EqualTo(Factory.DefaultPath + "\\.project.json"));
+			Assert.That(reader.Path, Is.EqualTo("c:\\projects\\abc\\.project.json"));
 		}
 
 		[Test]
 		public void WhenUpdatedItAddedGacReferences()
 		{
-			ProjectConfigurer configurer = Factory.CreateConfigurer();
+			ProjectStub project = new ProjectStub();
 			JsonReader reader = new JsonReader();
 			ProjectReader updater = new ProjectReader(reader);
 
-			updater.Update(configurer);
+			updater.Update(project);
 
-			Assert.That(configurer.References, Contains.Item(new Reference("System")));
+			Assert.That(project.References.Contains(new Reference("System")), Is.True);
 		}
 
 		[Test]
 		public void WhenUpdatedItAddedProjectReferences()
 		{
-			ProjectConfigurer configurer = Factory.CreateConfigurer();
+			ProjectStub project = new ProjectStub();
 			JsonReader reader = new JsonReader();
 			ProjectReader updater = new ProjectReader(reader);
 
-			updater.Update(configurer);
+			updater.Update(project);
 
-			Assert.That(configurer.Projects, Contains.Item(new ProjectReference("MyProject")));
+
+			Assert.That(project.ProjectReferences.Contains(new ProjectReference("MyProject")), Is.True);
 		}
 
 		[Test]
 		public void WhenUpdatedItAddedPackageReferences()
 		{
-			ProjectConfigurer configurer = Factory.CreateConfigurer();
+			ProjectStub project = new ProjectStub();
 			JsonReader reader = new JsonReader();
 			ProjectReader updater = new ProjectReader(reader);
 
-			updater.Update(configurer);
+			updater.Update(project);
 
-			Assert.That(configurer.Packages, Contains.Item(new PackageReference("NUnit", "2.6.3")));
-		}
-
-		private static class Factory
-		{
-			public const String DefaultName = "abc";
-			public const String DefaultPath = "C:\\Projects\\abc";
-
-			public static ProjectConfigurer CreateConfigurer()
-			{
-				return new ProjectConfigurer(new ProjectMetadata(DefaultPath, DefaultName));
-			}
+			Assert.That(project.PackageReferences.Contains(new PackageReference("NUnit", "2.6.3")), Is.True);
 		}
 
 		private class JsonReader : IJsonReader

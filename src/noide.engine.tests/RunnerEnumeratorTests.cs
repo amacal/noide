@@ -76,11 +76,8 @@ namespace noide.tests
 			public const String RunnerCommand = "c:\\packages\\NUnit.Runners-2.6.3\\tools\\nunit-console.exe";
 		}
 
-		private class Project : ProjectStub, IProject
+		private class Project : IProject
 		{
-			public const String DefaultName = "abc";
-			public const String DefaultPath = "c:\\projects\\abc";
-
 			private readonly PackageReference package;
 
 			public Project()
@@ -93,12 +90,22 @@ namespace noide.tests
 				this.package = package;
 			}
 
-			public ProjectMetadata Metadata
+			public IProjectMetadata Metadata
 			{
-				get { return new ProjectMetadata(DefaultPath, DefaultName); }
+				get { return new ProjectMetadataFake(); }
 			}
 
-			public override IPackageReferenceCollection PackageReferences
+			public IReferenceCollection References
+			{
+				get { return new ReferenceCollectionFake(); }
+			}
+
+			public IProjectReferenceCollection ProjectReferences
+			{
+				get { return new ProjectReferenceCollectionFake(); }
+			}
+
+			public IPackageReferenceCollection PackageReferences
 			{
 				get { return new PackageReferenceCollectionStub(this.package); }
 			}
@@ -203,9 +210,9 @@ namespace noide.tests
 				this.reference = reference;
 			}
 
-			public void Update(ProjectConfigurer configurer)
+			public void Update(IProject project)
 			{
-				configurer.AddPackage(this.reference);
+				project.PackageReferences.Add(this.reference);
 			}
 		}
 

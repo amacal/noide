@@ -4,16 +4,12 @@ namespace noide
 {
 	public interface IProject
 	{
-		ProjectMetadata Metadata { get; }
-
-		String Type { get; }
+		IProjectMetadata Metadata { get; }
 
 		IReferenceCollection References { get; }
 
 		IProjectReferenceCollection ProjectReferences { get; }
 
 		IPackageReferenceCollection PackageReferences { get; }
-
-		void Update(IProjectReader reader);
 	}
 }

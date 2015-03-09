@@ -4,25 +4,25 @@ namespace noide.tests
 {
 	public class PackageReferenceCollectionFake : IPackageReferenceCollection
 	{
-		public virtual int Count
+		public int Count
 		{
 			get { return 0; }
 		}
 
-		public virtual bool Contains(PackageReference reference)
+		public bool Contains(PackageReference reference)
 		{
 			return false;
 		}
 
-		public virtual void Clear()
+		public void Clear()
 		{
 		}
 
-		public virtual void Add(PackageReference reference)
+		public void Add(PackageReference reference)
 		{
 		}
 
-		public virtual IEnumerable<PackageReference> AsEnumerable()
+		public IEnumerable<PackageReference> AsEnumerable()
 		{
 			return new PackageReference[0];
 		}

@@ -20,7 +20,7 @@ namespace noide
             ProjectMetadata metadata = new ProjectMetadata(directory, name);
             Project project = new Project(metadata);
 
-            project.Update(this.projectReader);
+            this.projectReader.Update(project);
 			return project;
 		}
 	}

@@ -45,7 +45,7 @@ namespace noide
                 if (beat.IsSuccessful == true)
                 {
                     reporter.Trigger(beat.Payload);
-                    beat.Payload.Update(this.projectReader);
+                    this.projectReader.Update(beat.Payload);
                     solution.Compile(this.solutionCompiler, beat.Payload);
                 }
 

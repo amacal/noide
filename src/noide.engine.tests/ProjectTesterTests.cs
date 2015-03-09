@@ -36,7 +36,7 @@ namespace noide.tests
 
 			projectTester.Test(runner, project);
 
-			Assert.That(runnerEnumerator.Name, Is.EqualTo(Project.DefaultName));
+			Assert.That(runnerEnumerator.Name, Is.EqualTo("abc"));
 		}
 
 		[Test]
@@ -90,27 +90,24 @@ namespace noide.tests
 			public const String DefaultPackages = "c:\\packages";
 		}
 
-		private class Project : ProjectStub, IProject
+		private class Project : IProject
 		{
-			public const String DefaultName = "abc";
-			public const String DefaultPath = "c:\\projects\\abc";
-
-			public ProjectMetadata Metadata
+			public IProjectMetadata Metadata
 			{
-				get { return new ProjectMetadata(DefaultPath, DefaultName); }
+				get { return new ProjectMetadataStub("c:\\projects\\abc", "abc"); }
 			}
 
-			public override IReferenceCollection References
+			public IReferenceCollection References
 			{
 				get { return new ReferenceCollectionStub("System"); }
 			}
 
-			public override IProjectReferenceCollection ProjectReferences
+			public IProjectReferenceCollection ProjectReferences
 			{
 				get { return new ProjectReferenceCollectionStub("MyProject"); }
 			}
 
-			public override IPackageReferenceCollection PackageReferences
+			public IPackageReferenceCollection PackageReferences
 			{
 				get { return new PackageReferenceCollectionStub("NUnit", "2.6.3"); }
 			}

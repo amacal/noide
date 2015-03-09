@@ -181,7 +181,7 @@ namespace noide.tests
 
 		private class ProjectReader : IProjectReader
 		{
-			public void Update(ProjectConfigurer configurer)
+			public void Update(IProject project)
 			{
 			}
 		}
